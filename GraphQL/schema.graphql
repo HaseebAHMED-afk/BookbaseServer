@@ -1,0 +1,42 @@
+type Event {
+    result: String!
+}
+
+type Book{
+    id: ID!,
+    name:String!,
+    author: String,
+    yearOfPublishing: String!,
+    description: String!,
+    rating: String!,
+    languag: String!,
+    genre: String!,
+    coverImageUrl: String!
+}
+
+type Author {
+    id: ID!,
+    fullName: String!,
+    age: Number!,
+    country: String!,
+    preferedLanguage: String!,
+    genreOfInterest: [String!],
+    
+}
+
+type BookInput{
+     name:String!,
+    author: String,
+    yearOfPublishing: String!,
+    description: String!,
+    rating: String!,
+    languag: String!,
+    genre: String!,
+    coverImageUrl: String!
+}
+
+type Query{
+    getAllBook: [Book!] ,
+    getBookById (bookId: String!) : [Book!],
+    getBookByAuthor:
+}
