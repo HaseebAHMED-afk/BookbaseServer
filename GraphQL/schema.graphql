@@ -14,18 +14,8 @@ type Book{
     coverImageUrl: String!
 }
 
-type Author {
-    id: ID!,
-    fullName: String!,
-    age: Number!,
-    country: String!,
-    preferedLanguage: String!,
-    genreOfInterest: [String!],
-    
-}
-
 type BookInput{
-     name:String!,
+    name:String!,
     author: String,
     yearOfPublishing: String!,
     description: String!,
@@ -35,8 +25,49 @@ type BookInput{
     coverImageUrl: String!
 }
 
+type Author {
+    id: ID!,
+    fullName: String!,
+    age: Number!,
+    country: String!,
+    preferedLanguage: String!,
+    genreOfInterest: [String!],
+    authorEmail: String!,
+    verified: String!
+}
+
+type AuthorInput {
+    fullName: String!,
+    age: Number!,
+    country: String!,
+    preferedLanguage: String!,
+    genreOfInterest: [String!],
+    authorEmail: String!,
+    verified: String!
+}
+
+type VerificationCodes {
+    id: ID!,
+    authorID: String!,
+    code: String!
+}
+
+type VerificationInput {
+    authorID: String!,
+    code: String!
+}
+
 type Query{
-    getAllBook: [Book!] ,
+    getAllBooks: [Book!] ,
     getBookById (bookId: String!) : [Book!],
-    getBookByAuthor:
+    getBooksByAuthor: (author: String!) : [Book!]
+}
+
+type Mutation {
+    addAuthor(author:AuthorInput!) : Event
+    verifyAuthor(code: VerificationInput!) : Event 
+    addBook(book:BookInput!) : Event
+    rateBook(rating: String!) : Event
+    updateBook(book: BookInput!) : Event
+    deleteBook(bookId: String! ) : Event
 }
